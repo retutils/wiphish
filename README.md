@@ -1,2 +1,2 @@
 # wiphish
-Evil Twin WiFi Attack: Implementing Phishing with Evilginx2
+Evil Twin WiFi Attack: Implementing Evil Twin Phishing with Evilginx2

@@ -2,9 +2,10 @@
 package cfg
 
 import (
-	"net"
 	"os"
 	"path/filepath"
+
+	"github.com/wiphish/syscmd"
 )
 
 // Config is the configuration variables for the application
@@ -34,6 +35,10 @@ type Config struct {
 	Gateway string
 	// IptablesRulesFile is the file to save itpables rule.
 	IptablesRulesFile string
+	// DhcpConfigFile is the file to save dhcp config.
+	DhcpConfigFile string
+	// CMD is the command to execute.
+	CMD *syscmd.Runner
 }
 
 func New() (cfg *Config, err error) {
@@ -44,16 +49,43 @@ func New() (cfg *Config, err error) {
 	cfg.HostapdConfFile = filepath.Join(cfg.TempDir, "hostapd.conf")
 	cfg.HostapdLogFile = filepath.Join(cfg.TempDir, "hostapd.log")
 	cfg.IptablesRulesFile = filepath.Join(cfg.TempDir, "iptables.rules")
+	cfg.DhcpConfigFile = filepath.Join(cfg.TempDir, "dhcpd.conf")
+	cfg.CMD = syscmd.Command()
 	return cfg, nil
 }
 
-// Make dhcpool ip range from given network with given gateway with exclude gateway ip
-func (cfg *Config) MakeDhcpPool(cidr string) (err error) {
-	_, ipNet, err := net.ParseCIDR(cidr)
-	if err != nil {
-		return err
-	}
-	cfg.Gateway = ipNet.IP.String()
-	cfg.Network = ipNet.String()
-	return nil
+func (cfg *Config) Clean() error {
+	return os.RemoveAll(cfg.TempDir)
+}
+
+func (cfg *Config) SetDhcpPool(pool string) {
+	cfg.DhcpPool = pool
+}
+
+func (cfg *Config) SetNetwork(network string) {
+	cfg.Network = network
+}
+
+func (cfg *Config) SetGateway(gateway string) {
+	cfg.Gateway = gateway
+}
+
+func (cfg *Config) SetChannel(channel uint, err error) {
+	cfg.Channel = channel
+}
+
+func (cfg *Config) SetWiFiInterface(wifiInterface string) {
+	cfg.WiFiInterface = wifiInterface
+}
+
+func (cfg *Config) SetWiFiSSID(wifiSSID string) {
+	cfg.WiFiSSID = wifiSSID
+}
+
+func (cfg *Config) SetWiFiBSSID(wifiBSSID string) {
+	cfg.WiFiBSSID = wifiBSSID
+}
+
+func (cfg *Config) SetExtInterface(extInterface string) {
+	cfg.ExtInterface = extInterface
 }

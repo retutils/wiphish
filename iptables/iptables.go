@@ -10,9 +10,7 @@ import (
 )
 
 type Iptables struct {
-	cmd           *syscmd.Runner
-	ExtInterface  string
-	WifiInterface string
+	cmd *syscmd.Runner
 }
 
 // Temporaly file handeler to store iptables rules

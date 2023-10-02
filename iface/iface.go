@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	log "github.com/golang/glog"
+	"github.com/wiphish/cfg"
 	"github.com/wiphish/syscmd"
 )
 
@@ -150,5 +151,10 @@ func (r *Runner) Reset(intfName string) error {
 		return err
 	}
 	log.Infof("Interface %v is reset.", intfName)
+	return nil
+}
+
+func New(cfg *cfg.Config) (err error) {
+	supported
 	return nil
 }

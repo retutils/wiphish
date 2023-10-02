@@ -33,7 +33,7 @@ func Execute() {
 	}
 }
 
-var iface, esid, bsid, network, evilginx string
+var iface, esid, bsid, network, evilginx, gateway, pool string
 
 var channel uint
 
@@ -47,7 +47,9 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&iface, "interface", "w", "wlan1", "Wifi interface default wlan1")
 	rootCmd.PersistentFlags().StringVarP(&esid, "esid", "e", "", "ESSID name")
 	rootCmd.PersistentFlags().StringVarP(&bsid, "bsid", "b", "", "BSSID name")
-	rootCmd.PersistentFlags().StringVarP(&network, "network", "n", "192.168.111.0/24", "Network")
-	rootCmd.PersistentFlags().StringVarP(&evilginx, "evilginx", "d", "192.168.111.1", "Evilginx IP")
+	rootCmd.PersistentFlags().StringVarP(&network, "network", "n", "10.168.111.0/24", "Network")
+	rootCmd.PersistentFlags().StringVarP(&evilginx, "gateway", "g", "10.168.111.2-10.168.111.254", "AP IP address")
+	rootCmd.PersistentFlags().StringVarP(&gateway, "pool", "p", "10.168.111.1", "DHCP IP address pool")
+	rootCmd.PersistentFlags().StringVarP(&evilginx, "evilginx", "d", "10.168.111.1", "Evilginx IP")
 	rootCmd.PersistentFlags().UintVarP(&channel, "channel", "c", 11, "WiFi channel")
 }

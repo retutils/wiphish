@@ -40,3 +40,9 @@ func (r *Runner) StopHostapd() error {
 	log.Info("Stopped all hostapd processes.")
 	return nil
 }
+
+func New() *Runner {
+	return &Runner{
+		cmd: syscmd.Command(),
+	}
+}

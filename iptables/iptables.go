@@ -5,6 +5,7 @@ import (
 	"os"
 
 	log "github.com/golang/glog"
+	"github.com/wiphish/cfg"
 	"github.com/wiphish/syscmd"
 )
 
@@ -74,20 +75,6 @@ func (r *Iptables) Save(file string) error {
 }
 
 // Init initializes iptables rules.
-func Init() (err error) {
-	tempDir, err := os.MkdirTemp("", "iptables")
-	if err != nil {
-		return err
-	}
-
-	iptfile, err = os.CreateTemp(tempDir, "iptables-rules")
-	if err != nil {
-		return err
-	}
-	log.Infof("Iptables rules are stored in file %v.", iptfile.Name())
-	r := &Iptables{cmd: syscmd.Command()}
-	if err = r.Save(iptfile); err != nil {
-		return err
-	}
+func New(c *cfg.Config) (err error) {
 	return nil
 }

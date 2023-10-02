@@ -33,7 +33,7 @@ func Execute() {
 	}
 }
 
-var iface, esid, bsid, network eveilginx string
+var iface, esid, bsid, network, evilginx string
 
 var channel uint
 

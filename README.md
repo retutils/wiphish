@@ -14,14 +14,14 @@
 ## Features
 
 1. **Evil Twin Attack**: Easily set up a fake AP to deceive unsuspecting users.
-2. **Evilginx2 Patched Framework**: Incorporates the powerful features of Evilginx2, modified for enhanced phishing capabilities.
-3. **Recursive DNS Server**: Ensures target phishing domains resolve only post-capture of credentials.
-4. **Extended DHCP Lease**: Configured with a large DHCP lease time to accommodate users with unique static IPs.
+2. **Evilginx2 Patched Framework**: Incorporates the powerful features of Evilginx2, modified for enhanced phishing capabilities. The patch add recursive DNS Server capability with a small feature that ensures target phishing domains resolve only pre-capture of credentials. If we have a user credentials we resolver point user to the real target server. 
+The dhpcd server configured with a large DHCP lease time to accommodate users with unique IPs.
+
 
 ## Prerequisites
 
 - Hardware: Ensure you have compatible hardware for setting up a fake AP.
-- Dependencies: List of required libraries/software (e.g., Evilginx2, DHCP server tools, etc.)
+- Dependencies: Evilginx2, DHCP server tools, etc
 
 ## Installation
 

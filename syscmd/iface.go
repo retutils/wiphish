@@ -63,8 +63,8 @@ func interfaceByLocalAddress(ip net.IP) (*net.Interface, error) {
 	return nil, errors.New("no interface found for the IP")
 }
 
-// Get the WiFi driver name used by a specific interface
-func (r *Runner) GetDriver(interfaceName string) (string, error) {
+// GetIntDriver the WiFi driver name used by a specific interface
+func (r *Runner) GetIntDriver(interfaceName string) (string, error) {
 	driverPath := fmt.Sprintf("/sys/class/net/%s/device/driver", interfaceName)
 	driverRealPath, err := filepath.EvalSymlinks(driverPath)
 	if err != nil {
@@ -73,8 +73,8 @@ func (r *Runner) GetDriver(interfaceName string) (string, error) {
 	return filepath.Base(driverRealPath), nil
 }
 
-// BringUp brings up a certain network interface.
-func (r *Runner) BringUp(intfName string) error {
+// BringIntUp brings up a certain network interface.
+func (r *Runner) BringIntUp(intfName string) error {
 	if _, err := r.ExecCommand(true, "ip link set dev", intfName, "up"); err != nil {
 		return err
 	}
@@ -82,8 +82,8 @@ func (r *Runner) BringUp(intfName string) error {
 	return nil
 }
 
-// TurnDown turns down a certain network interface.
-func (r *Runner) TurnDown(intfName string) error {
+// TurnIntDown turns down a certain network interface.
+func (r *Runner) TurnIntDown(intfName string) error {
 	if _, err := r.ExecCommand(true, "ip link set dev", intfName, "down"); err != nil {
 		return err
 	}
@@ -101,7 +101,7 @@ func (r *Runner) SetCountry(intfName string, countryCode string) error {
 }
 
 // SetTxPower sets the tx power for a certain network interface.
-func (r *Runner) SetTxPower(intfName string, txPower int) error {
+func (r *Runner) SetIntTxPower(intfName string, txPower int) error {
 	if _, err := r.ExecCommand(true, "iw", intfName, "txpower", "fixed", fmt.Sprintf("%d", txPower)); err != nil {
 		return err
 	}
@@ -110,7 +110,7 @@ func (r *Runner) SetTxPower(intfName string, txPower int) error {
 }
 
 // SetUnmanaged sets a certain network interface as unmanaged.
-func (r *Runner) SetUnmanaged(intfName string) error {
+func (r *Runner) SetIntUnmanaged(intfName string) error {
 	if _, err := r.ExecCommand(true, "nmcli dev set", intfName, "managed", "no"); err != nil {
 		return err
 	}
@@ -119,7 +119,7 @@ func (r *Runner) SetUnmanaged(intfName string) error {
 }
 
 // SetManaged sets a certain network interface as managed.
-func (r *Runner) SetManaged(intfName string) error {
+func (r *Runner) SetIntManaged(intfName string) error {
 	if _, err := r.ExecCommand(true, "nmcli dev set", intfName, "managed", "yes"); err != nil {
 		return err
 	}
@@ -128,7 +128,7 @@ func (r *Runner) SetManaged(intfName string) error {
 }
 
 // SetMAC sets the MAC address for a certain network interface.
-func (r *Runner) SetMAC(intfName string, macAddr string) error {
+func (r *Runner) SetIntMAC(intfName string, macAddr string) error {
 	if _, err := r.ExecCommand(true, "ip link set dev", intfName, "address", macAddr); err != nil {
 		return err
 	}
@@ -137,7 +137,7 @@ func (r *Runner) SetMAC(intfName string, macAddr string) error {
 }
 
 // Reset a certain network interface.
-func (r *Runner) Reset(intfName string) error {
+func (r *Runner) ResetInt(intfName string) error {
 	if _, err := r.ExecCommand(true, "ip", "link", "set", "dev", intfName, "down"); err != nil {
 		return err
 	}

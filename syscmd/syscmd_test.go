@@ -10,7 +10,7 @@ const (
 
 func TestCheckHostapdSupport(t *testing.T) {
 	r := Command()
-	if _, err := r.CheckHostapdSuppor(testIntfName); err != nil {
+	if _, err := r.CheckHostapdSupport(testIntfName); err != nil {
 		t.Errorf("Checking hostapd support failed. Error: %v.", err)
 	}
 }

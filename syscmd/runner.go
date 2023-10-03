@@ -37,6 +37,13 @@ func execute(wait bool, cmd string, args ...string) (string, error) {
 	return outputString, err
 }
 
+// Runner executes external commands in the real environment.
+func Command() *Runner {
+	return &Runner{
+		ExecCommand: execute,
+	}
+}
+
 // SetIPForwading enables IP forwarding.
 func (r *Runner) SetIPForwading() error {
 	if _, err := r.ExecCommand(true, "sysctl", "-w", "net.ipv4.ip_forward=1"); err != nil {

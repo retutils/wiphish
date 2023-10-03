@@ -64,7 +64,3 @@ Contributions are welcome! Please ensure your pull request adheres to the follow
 ## License
 
 Specify your license here, for example, MIT, GPLv3, etc. Always ensure that your tool adheres to the licensing of the software/tools it builds upon.
-
----
-
-Remember to replace placeholders like `yourusername` with appropriate values. Tailor the README to match the specific features, requirements, and steps of your tool. Ensure your tool adheres to the legal and ethical standards of the cybersecurity community.

@@ -64,3 +64,4 @@ func (r *Runner) StartAvahi() error {
 	log.Info("Avahi-daemon is started.")
 	return nil
 }
+e

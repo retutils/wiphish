@@ -155,6 +155,5 @@ func (r *Runner) Reset(intfName string) error {
 }
 
 func New(cfg *cfg.Config) (err error) {
-	supported
-	return nil
+	return &Runner{	
 }
